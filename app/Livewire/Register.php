@@ -35,8 +35,7 @@ class Register extends Component
                 'email' => trim($this->email),
                 'name' => trim($this->name),
                 'surname' => trim($this->surname),
-                'password' => Hash::make(trim($this->password)),
-                'type' => 'admin'
+                'password' => Hash::make(trim($this->password))
             ]);
 
             Auth::login($user);

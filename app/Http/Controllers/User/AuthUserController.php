@@ -20,21 +20,4 @@ class AuthUserController extends Controller
             return redirect()->route('login');
         });
     }
-
-    public function changePasswordPost(Request $request)
-    {
-        if (!Hash::check($request->current_password, User::find(Auth::user()->id)->password)){
-            return redirect()->back()->withErrors(['incorrectPassword' => 'Current password is incorrect.']);
-        }
-
-        $request->validate([
-            'password' => ['required', 'confirmed', 'max:255', 'min:6'],
-        ]);
-
-        User::find(Auth::user()->id)->update([
-            'password' => Hash::make($request->password)
-        ]);
-
-        return redirect()->back()->with('success', 'Password has been changed.');
-    }
 }
